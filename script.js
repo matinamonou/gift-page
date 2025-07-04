@@ -30,11 +30,11 @@ yesBtn.addEventListener('click', () => {
     localStorage.setItem('selectedGift', selectedGift);
   
     // Send data via FormSubmit (optional)
-    fetch("https://formsubmit.co/ajax/matinamonou@gmail.com", {
-      method: "POST",
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ gift: selectedGift })
-    }).catch(() => {
+    fetch("https://getform.io/f/your-form-id", {
+        method: "POST",
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ gift: selectedGift })
+      }).catch(() => {
       alert("There was a problem recording your gift.");
     });
   
