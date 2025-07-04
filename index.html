@@ -1,124 +1,36 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>🏴‍☠️ Treasure Island Gift Selection 🏴‍☠️</title>
+  <title>Choose Your Gift</title>
   <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Pirata+One&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <div class="ocean-background">
-    <div class="waves"></div>
-    <div class="waves"></div>
-    <div class="waves"></div>
-  </div>
-
-  <div class="island-container">
-    <div class="island">
-      <div class="palm-tree left"></div>
-      <div class="palm-tree right"></div>
-      
-      <div class="treasure-chest">
-        <div class="chest-lid"></div>
-        <div class="chest-body"></div>
-        <div class="chest-lock"></div>
-      </div>
-
-      <div class="content">
-        <h1 class="title">
-          <span class="treasure-icon">🏴‍☠️</span>
-          Choose Your Treasure!
-          <span class="treasure-icon">🏴‍☠️</span>
-        </h1>
-        
-        <p class="subtitle">Ahoy, young adventurer! Pick your precious gift from the treasure chest below!</p>
-
-        <div class="gift-container">
-          <div class="gift" data-gift="Ball">
-            <div class="gift-box">
-              <div class="gift-lid"></div>
-              <div class="gift-ribbon"></div>
-              <div class="gift-content">
-                <div class="gift-icon">⚽</div>
-                <h3>Adventure Ball</h3>
-                <p>Perfect for outdoor adventures!</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="gift" data-gift="Puzzle">
-            <div class="gift-box">
-              <div class="gift-lid"></div>
-              <div class="gift-ribbon"></div>
-              <div class="gift-content">
-                <div class="gift-icon">🧩</div>
-                <h3>Treasure Puzzle</h3>
-                <p>Unlock the secrets piece by piece!</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="gift" data-gift="Book">
-            <div class="gift-box">
-              <div class="gift-lid"></div>
-              <div class="gift-ribbon"></div>
-              <div class="gift-content">
-                <div class="gift-icon">📚</div>
-                <h3>Magic Book</h3>
-                <p>Journey through endless stories!</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="gift" data-gift="Headphones">
-            <div class="gift-box">
-              <div class="gift-lid"></div>
-              <div class="gift-ribbon"></div>
-              <div class="gift-content">
-                <div class="gift-icon">🎧</div>
-                <h3>Sound Explorer</h3>
-                <p>Listen to the music of adventure!</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="compass">
-          <div class="compass-needle"></div>
-          <div class="compass-markings"></div>
-        </div>
-      </div>
+  <h1>Carefully choose your big gift!</h1>
+  <div class="gift-container">
+    <div class="gift" data-gift="Ball">
+      <img src="images/ball.jpg" alt="Ball">
+      <p>Ball</p>
+    </div>
+    <div class="gift" data-gift="Puzzle">
+      <img src="images/puzzle.jpg" alt="Puzzle">
+      <p>Puzzle</p>
+    </div>
+    <div class="gift" data-gift="Book">
+      <img src="images/book.jpg" alt="Book">
+      <p>Book</p>
+    </div>
+    <div class="gift" data-gift="Headphones">
+      <img src="images/headphones.jpg" alt="Headphones">
+      <p>Headphones</p>
     </div>
   </div>
 
   <!-- Popup -->
   <div id="popup" class="hidden">
-    <div class="popup-content">
-      <div class="popup-header">
-        <span class="treasure-icon">💎</span>
-        <h2>Lock Your Treasure?</h2>
-        <span class="treasure-icon">💎</span>
-      </div>
-      <p id="popup-text"></p>
-      <div class="popup-buttons">
-        <button id="yes-btn" class="btn-yes">
-          <span class="btn-icon">🔒</span>
-          Yes, Lock It!
-        </button>
-        <button id="no-btn" class="btn-no">
-          <span class="btn-icon">🔄</span>
-          Change Choice
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <div class="floating-elements">
-    <div class="floating-book">📖</div>
-    <div class="floating-compass">🧭</div>
-    <div class="floating-map">🗺️</div>
-    <div class="floating-gem">💎</div>
+    <p id="popup-text"></p>
+    <button id="yes-btn">Yes, lock it!</button>
+    <button id="no-btn">No, change choice</button>
   </div>
 
   <script src="script.js"></script>

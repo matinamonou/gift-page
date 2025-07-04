@@ -1,349 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>🎉 Treasure Found! 🎉</title>
+  <title>Gift Confirmed!</title>
   <script src="confetti.min.js"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Pirata+One&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
     body {
-      font-family: 'Merriweather', serif;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      min-height: 100vh;
-      overflow: hidden;
-      position: relative;
-    }
-
-    /* Animated Background */
-    .bg-animation {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-    }
-
-    .stars {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      background-image: 
-        radial-gradient(2px 2px at 20px 30px, #eee, transparent),
-        radial-gradient(2px 2px at 40px 70px, rgba(255,255,255,0.8), transparent),
-        radial-gradient(1px 1px at 90px 40px, #fff, transparent),
-        radial-gradient(1px 1px at 130px 80px, rgba(255,255,255,0.6), transparent),
-        radial-gradient(2px 2px at 160px 30px, #ddd, transparent);
-      background-repeat: repeat;
-      background-size: 200px 100px;
-      animation: sparkle 4s linear infinite;
-    }
-
-    @keyframes sparkle {
-      0% { transform: translateY(0px); }
-      100% { transform: translateY(-100px); }
-    }
-
-    /* Treasure Chest Animation */
-    .treasure-chest-container {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      z-index: 10;
-    }
-
-    .treasure-chest {
-      width: 200px;
-      height: 150px;
-      position: relative;
-      animation: chestBounce 2s ease-in-out infinite;
-    }
-
-    .chest-body {
-      width: 100%;
-      height: 100px;
-      background: linear-gradient(45deg, #8B4513, #A0522D);
-      border-radius: 15px;
-      border: 5px solid #654321;
-      position: relative;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-    }
-
-    .chest-lid {
-      width: 110%;
-      height: 40px;
-      background: linear-gradient(45deg, #A0522D, #CD853F);
-      border-radius: 15px 15px 0 0;
-      border: 5px solid #654321;
-      border-bottom: none;
-      position: absolute;
-      top: -40px;
-      left: -5%;
-      transform-origin: bottom;
-      animation: lidOpen 3s ease-in-out infinite;
-    }
-
-    .chest-lock {
-      position: absolute;
-      top: -25px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 30px;
-      height: 20px;
-      background: #FFD700;
-      border-radius: 8px;
-      border: 3px solid #B8860B;
-      box-shadow: 0 2px 10px rgba(255, 215, 0, 0.5);
-    }
-
-    @keyframes chestBounce {
-      0%, 100% { transform: translateY(0px); }
-      50% { transform: translateY(-20px); }
-    }
-
-    @keyframes lidOpen {
-      0%, 100% { transform: rotateX(0deg); }
-      50% { transform: rotateX(-30deg); }
-    }
-
-    /* Main Content */
-    .container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-      padding: 20px;
+      font-family: sans-serif;
       text-align: center;
-      color: #fff;
-      position: relative;
-      z-index: 5;
+      padding: 100px 20px;
+      background-color: #fefefe;
     }
-
-    .success-title {
-      font-family: 'Pirata One', cursive;
-      font-size: 4rem;
-      margin-bottom: 20px;
-      text-shadow: 3px 3px 0px #654321, 6px 6px 0px #3E2723;
-      animation: titleGlow 2s ease-in-out infinite alternate;
-      background: linear-gradient(45deg, #FFD700, #FFA500, #FFD700);
-      background-size: 200% 200%;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      animation: titleGlow 2s ease-in-out infinite alternate, gradientShift 3s ease-in-out infinite;
-    }
-
-    @keyframes titleGlow {
-      0% { text-shadow: 3px 3px 0px #654321, 6px 6px 0px #3E2723; }
-      100% { text-shadow: 3px 3px 0px #654321, 6px 6px 0px #3E2723, 0 0 30px #FFD700; }
-    }
-
-    @keyframes gradientShift {
-      0%, 100% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-    }
-
-    .message {
-      font-size: 2rem;
+    h1 {
+      font-size: 2em;
       margin-bottom: 30px;
-      color: #FFD700;
-      text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-      animation: messageFloat 3s ease-in-out infinite;
-    }
-
-    @keyframes messageFloat {
-      0%, 100% { transform: translateY(0px); }
-      50% { transform: translateY(-10px); }
-    }
-
-    .gift-name {
-      font-family: 'Pirata One', cursive;
-      font-size: 2.5rem;
-      color: #FF6B6B;
-      text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-      margin-bottom: 40px;
-      animation: giftPulse 2s ease-in-out infinite;
-    }
-
-    @keyframes giftPulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.1); }
-    }
-
-    .celebration-text {
-      font-size: 1.3rem;
-      margin-bottom: 40px;
-      color: #fff;
-      text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
-      max-width: 600px;
-      line-height: 1.6;
-    }
-
-    /* Floating Elements */
-    .floating-elements {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: 1;
-    }
-
-    .floating-gem, .floating-star, .floating-heart, .floating-diamond {
-      position: absolute;
-      font-size: 2.5rem;
-      animation: floatAround 15s linear infinite;
-    }
-
-    .floating-gem {
-      top: 15%;
-      left: 10%;
-      animation-delay: 0s;
-    }
-
-    .floating-star {
-      top: 25%;
-      right: 15%;
-      animation-delay: 3s;
-    }
-
-    .floating-heart {
-      bottom: 30%;
-      left: 5%;
-      animation-delay: 6s;
-    }
-
-    .floating-diamond {
-      bottom: 20%;
-      right: 10%;
-      animation-delay: 9s;
-    }
-
-    @keyframes floatAround {
-      0% { transform: translate(0, 0) rotate(0deg) scale(1); }
-      25% { transform: translate(100px, -50px) rotate(90deg) scale(1.2); }
-      50% { transform: translate(50px, -100px) rotate(180deg) scale(0.8); }
-      75% { transform: translate(-50px, -50px) rotate(270deg) scale(1.1); }
-      100% { transform: translate(0, 0) rotate(360deg) scale(1); }
-    }
-
-    /* Success Button */
-    .success-btn {
-      padding: 20px 40px;
-      background: linear-gradient(45deg, #4CAF50, #45a049);
-      color: white;
-      border: none;
-      border-radius: 50px;
-      font-size: 1.2rem;
-      font-weight: bold;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      box-shadow: 0 10px 30px rgba(76, 175, 80, 0.4);
-      animation: buttonGlow 2s ease-in-out infinite alternate;
-    }
-
-    .success-btn:hover {
-      transform: translateY(-5px) scale(1.05);
-      box-shadow: 0 15px 40px rgba(76, 175, 80, 0.6);
-    }
-
-    @keyframes buttonGlow {
-      0% { box-shadow: 0 10px 30px rgba(76, 175, 80, 0.4); }
-      100% { box-shadow: 0 10px 30px rgba(76, 175, 80, 0.4), 0 0 20px rgba(76, 175, 80, 0.8); }
-    }
-
-    /* Responsive Design */
-    @media (max-width: 768px) {
-      .success-title {
-        font-size: 3rem;
-      }
-      
-      .message {
-        font-size: 1.5rem;
-      }
-      
-      .gift-name {
-        font-size: 2rem;
-      }
-      
-      .celebration-text {
-        font-size: 1.1rem;
-      }
-      
-      .treasure-chest {
-        width: 150px;
-        height: 120px;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .success-title {
-        font-size: 2.5rem;
-      }
-      
-      .message {
-        font-size: 1.3rem;
-      }
-      
-      .gift-name {
-        font-size: 1.8rem;
-      }
-      
-      .celebration-text {
-        font-size: 1rem;
-      }
     }
   </style>
 </head>
 <body>
-  <div class="bg-animation">
-    <div class="stars"></div>
-  </div>
-
-  <div class="floating-elements">
-    <div class="floating-gem">💎</div>
-    <div class="floating-star">⭐</div>
-    <div class="floating-heart">❤️</div>
-    <div class="floating-diamond">💎</div>
-  </div>
-
-  <div class="treasure-chest-container">
-    <div class="treasure-chest">
-      <div class="chest-lid"></div>
-      <div class="chest-body"></div>
-      <div class="chest-lock"></div>
-    </div>
-  </div>
-
-  <div class="container">
-    <h1 class="success-title">
-      🎉 Treasure Found! 🎉
-    </h1>
-    
-    <p class="message" id="message">Loading your treasure...</p>
-    
-    <div class="gift-name" id="gift-name"></div>
-    
-    <p class="celebration-text">
-      Congratulations, young adventurer! You've successfully chosen your precious gift from the treasure chest. 
-      Your selection has been locked and will soon be delivered to you. 
-      May this treasure bring you joy and countless adventures!
-    </p>
-    
-    <button class="success-btn" onclick="window.location.href='index.html'">
-      🏴‍☠️ Choose Another Treasure 🏴‍☠️
-    </button>
-  </div>
+  <h1 id="message">Loading...</h1>
 
   <script>
     // Extract gift name from URL
@@ -351,44 +26,18 @@
     const gift = params.get('gift');
 
     const message = document.getElementById('message');
-    const giftName = document.getElementById('gift-name');
-
     if (gift) {
-      message.textContent = `Your ${gift} is on its way!`;
-      giftName.textContent = `🎁 ${gift} 🎁`;
+      message.textContent = `🎉 Congratulations! Your ${gift} will be soon on your hands!`;
     } else {
       message.textContent = "Gift selection not found!";
-      giftName.textContent = "❌ No Gift Selected ❌";
     }
 
-    // Enhanced confetti animation
-    function createConfetti() {
-      confetti({
-        particleCount: 200,
-        spread: 100,
-        origin: { y: 0.6 },
-        colors: ['#FFD700', '#FF6B6B', '#4ECDC4', '#45B7D1', '#96CEB4', '#FFEAA7']
-      });
-    }
-
-    // Multiple confetti bursts
-    setTimeout(createConfetti, 500);
-    setTimeout(createConfetti, 1500);
-    setTimeout(createConfetti, 2500);
-    setTimeout(createConfetti, 3500);
-
-    // Continuous confetti for celebration
-    setInterval(() => {
-      confetti({
-        particleCount: 50,
-        spread: 70,
-        origin: { 
-          x: Math.random(),
-          y: Math.random() * 0.5 + 0.2
-        },
-        colors: ['#FFD700', '#FF6B6B', '#4ECDC4']
-      });
-    }, 3000);
+    // Trigger confetti animation
+    confetti({
+      particleCount: 150,
+      spread: 70,
+      origin: { y: 0.6 }
+    });
   </script>
 </body>
 </html>
