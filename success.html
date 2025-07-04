@@ -15,10 +15,43 @@
       font-size: 2em;
       margin-bottom: 30px;
     }
+    .button-container {
+      margin-top: 30px;
+    }
+    .btn {
+      padding: 10px 20px;
+      margin: 0 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s;
+    }
+    .btn-primary {
+      background-color: #4CAF50;
+      color: white;
+    }
+    .btn-primary:hover {
+      background-color: #45a049;
+    }
+    .btn-secondary {
+      background-color: #f44336;
+      color: white;
+    }
+    .btn-secondary:hover {
+      background-color: #da190b;
+    }
   </style>
 </head>
 <body>
   <h1 id="message">Loading...</h1>
+
+  <div class="button-container">
+    
+    <button class="btn btn-secondary" onclick="resetSelection()">
+      Reset Selection
+    </button>
+  </div>
 
   <script>
     // Extract gift name from URL
@@ -39,6 +72,14 @@
       spread: 70,
       origin: { y: 0.6 }
     });
+
+    // Function to reset the gift selection
+    function resetSelection() {
+      // Clear the local storage
+      localStorage.removeItem('selectedGift');
+      // Redirect back to the gift selection page
+      window.location.href = 'index.html';
+    }
   </script>
 </body>
 </html>
