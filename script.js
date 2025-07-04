@@ -1,8 +1,6 @@
 const gifts = document.querySelectorAll('.gift');
 const popup = document.getElementById('popup');
 const popupText = document.getElementById('popup-text');
-const yesBtn = document.getElementById('yes-btn');
-const noBtn = document.getElementById('no-btn');
 
 let selectedGift = null;
 
@@ -23,27 +21,30 @@ gifts.forEach(gift => {
   });
 });
 
-yesBtn.addEventListener('click', () => {
-    popup.classList.add('hidden');
+function lockGift() {
+  popup.classList.add('hidden');
   
-    // Save the selected gift to local storage
-    localStorage.setItem('selectedGift', selectedGift);
+  // Save the selected gift to local storage
+  localStorage.setItem('selectedGift', selectedGift);
   
-    // Send data via FormSubmit (optional)
-    fetch("https://getform.io/f/your-form-id", {
-        method: "POST",
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ gift: selectedGift })
-      }).catch(() => {
-      alert("There was a problem recording your gift.");
-    });
-  
-    // Redirect to success page with gift name in URL
-    window.location.href = `success.html?gift=${encodeURIComponent(selectedGift)}`;
+  // Send data via FormSubmit with keepalive
+  console.log("Sending data to FormSubmit");
+  fetch("https://getform.io/f/avrynzqa", {
+    method: "POST",
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ gift: selectedGift }),
+    keepalive: true // This allows the request to continue after page navigation
+  }).then(response => {
+    console.log("Data sent successfully");
+  }).catch(error => {
+    console.error("Error sending data:", error);
   });
   
+  // Redirect immediately - request will continue in background
+  window.location.href = `success.html?gift=${encodeURIComponent(selectedGift)}`;
+}
 
-noBtn.addEventListener('click', () => {
+function cancelSelection() {
   popup.classList.add('hidden');
-});
+}
 
