@@ -5,52 +5,266 @@
   <title>Gift Confirmed!</title>
   <script src="confetti.min.js"></script>
   <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
     body {
-      font-family: sans-serif;
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #f5576c 75%, #4facfe 100%);
+      background-size: 400% 400%;
+      animation: gradientShift 8s ease infinite;
+      min-height: 100vh;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    @keyframes gradientShift {
+      0%, 100% { background-position: 0% 50%; }
+      25% { background-position: 100% 50%; }
+      50% { background-position: 100% 100%; }
+      75% { background-position: 0% 100%; }
+    }
+
+    /* Animated Background Elements */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: 
+        radial-gradient(3px 3px at 20px 30px, #fff, transparent),
+        radial-gradient(2px 2px at 40px 70px, rgba(255,255,255,0.8), transparent),
+        radial-gradient(1px 1px at 90px 40px, #fff, transparent),
+        radial-gradient(1px 1px at 130px 80px, rgba(255,255,255,0.6), transparent),
+        radial-gradient(2px 2px at 160px 30px, #ddd, transparent);
+      background-repeat: repeat;
+      background-size: 200px 100px;
+      animation: sparkle 4s linear infinite;
+      z-index: -1;
+    }
+
+    @keyframes sparkle {
+      0% { transform: translateY(0px); }
+      100% { transform: translateY(-100px); }
+    }
+
+    /* Main Container */
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 40px 20px;
       text-align: center;
-      padding: 100px 20px;
-      background-color: #fefefe;
+      color: #fff;
+      position: relative;
+      z-index: 5;
     }
+
+    /* Title Styling */
     h1 {
-      font-size: 2em;
+      font-size: 4rem;
+      font-weight: bold;
       margin-bottom: 30px;
+      color: #fff;
+      text-shadow: 
+        3px 3px 0px #ff6b6b,
+        6px 6px 0px #4ecdc4,
+        9px 9px 0px #45b7d1;
+      animation: titleGlow 2s ease-in-out infinite alternate;
+      font-family: 'Arial Black', sans-serif;
+      letter-spacing: 2px;
     }
+
+    @keyframes titleGlow {
+      0% { text-shadow: 3px 3px 0px #ff6b6b, 6px 6px 0px #4ecdc4, 9px 9px 0px #45b7d1; }
+      100% { text-shadow: 3px 3px 0px #ff6b6b, 6px 6px 0px #4ecdc4, 9px 9px 0px #45b7d1, 0 0 20px #fff; }
+    }
+
+    /* Message Styling */
+    #message {
+      font-size: 2rem;
+      margin-bottom: 30px;
+      color: #ffd700;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+      animation: messageFloat 3s ease-in-out infinite;
+      font-weight: bold;
+    }
+
+    @keyframes messageFloat {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+
+    /* Button Container */
     .button-container {
-      margin-top: 30px;
+      margin-top: 40px;
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
     }
+
+    /* Button Styling */
     .btn {
-      padding: 10px 20px;
-      margin: 0 10px;
+      padding: 20px 40px;
       border: none;
-      border-radius: 5px;
+      border-radius: 25px;
+      font-size: 1.2rem;
+      font-weight: bold;
       cursor: pointer;
-      font-size: 16px;
-      transition: background-color 0.3s;
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+      border: 3px solid #fff;
+      position: relative;
+      overflow: hidden;
     }
+
+    .btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+      transition: left 0.6s ease;
+    }
+
+    .btn:hover::before {
+      left: 100%;
+    }
+
     .btn-primary {
-      background-color: #4CAF50;
+      background: linear-gradient(45deg, #4CAF50, #45a049);
       color: white;
     }
+
     .btn-primary:hover {
-      background-color: #45a049;
+      transform: translateY(-5px) scale(1.05);
+      box-shadow: 0 15px 40px rgba(76, 175, 80, 0.6);
+      background: linear-gradient(45deg, #45a049, #4CAF50);
     }
+
     .btn-secondary {
-      background-color: #f44336;
+      background: linear-gradient(45deg, #f44336, #da190b);
       color: white;
     }
+
     .btn-secondary:hover {
-      background-color: #da190b;
+      transform: translateY(-5px) scale(1.05);
+      box-shadow: 0 15px 40px rgba(244, 67, 54, 0.6);
+      background: linear-gradient(45deg, #da190b, #f44336);
+    }
+
+    /* Floating Elements */
+    .floating-elements {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .floating-star, .floating-heart, .floating-diamond, .floating-gem {
+      position: absolute;
+      font-size: 2.5rem;
+      animation: floatAround 15s linear infinite;
+    }
+
+    .floating-star {
+      top: 15%;
+      left: 10%;
+      animation-delay: 0s;
+    }
+
+    .floating-heart {
+      top: 25%;
+      right: 15%;
+      animation-delay: 3s;
+    }
+
+    .floating-diamond {
+      bottom: 30%;
+      left: 5%;
+      animation-delay: 6s;
+    }
+
+    .floating-gem {
+      bottom: 20%;
+      right: 10%;
+      animation-delay: 9s;
+    }
+
+    @keyframes floatAround {
+      0% { transform: translate(0, 0) rotate(0deg) scale(1); }
+      25% { transform: translate(100px, -50px) rotate(90deg) scale(1.2); }
+      50% { transform: translate(50px, -100px) rotate(180deg) scale(0.8); }
+      75% { transform: translate(-50px, -50px) rotate(270deg) scale(1.1); }
+      100% { transform: translate(0, 0) rotate(360deg) scale(1); }
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 3rem;
+      }
+      
+      #message {
+        font-size: 1.5rem;
+      }
+      
+      .button-container {
+        flex-direction: column;
+        gap: 15px;
+      }
+      
+      .btn {
+        padding: 15px 30px;
+        font-size: 1rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 2.5rem;
+      }
+      
+      #message {
+        font-size: 1.3rem;
+      }
+      
+      .btn {
+        padding: 12px 25px;
+        font-size: 0.9rem;
+      }
     }
   </style>
 </head>
 <body>
-  <h1 id="message">Loading...</h1>
+  <div class="floating-elements">
+    <div class="floating-star">⭐</div>
+    <div class="floating-heart">❤️</div>
+    <div class="floating-diamond">💎</div>
+    <div class="floating-gem">✨</div>
+  </div>
 
-  <div class="button-container">
-    
-    <button class="btn btn-secondary" onclick="resetSelection()">
-      Reset Selection
-    </button>
+  <div class="container">
+    <h1>🎉 Gift Confirmed! 🎉</h1>
+    <p id="message">Loading...</p>
+
+    <div class="button-container">
+      <button class="btn btn-secondary" onclick="resetSelection()">
+        Reset Selection
+      </button>
+    </div>
   </div>
 
   <script>

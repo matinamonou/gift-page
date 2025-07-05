@@ -6,31 +6,44 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <h1>Carefully choose your big gift!</h1>
-  <div class="gift-container">
-    <div class="gift" data-gift="Ball">
-      <img src="images/ball.jpg" alt="Ball">
-      <p>Ball</p>
-    </div>
-    <div class="gift" data-gift="Puzzle">
-      <img src="images/puzzle.jpg" alt="Puzzle">
-      <p>Puzzle</p>
-    </div>
-    <div class="gift" data-gift="Book">
-      <img src="images/book.jpg" alt="Book">
-      <p>Book</p>
-    </div>
-    <div class="gift" data-gift="Headphones">
-      <img src="images/headphones.jpg" alt="Headphones">
-      <p>Headphones</p>
+  <div class="floating-elements">
+    <div class="floating-star">⭐</div>
+    <div class="floating-heart">❤️</div>
+    <div class="floating-diamond">💎</div>
+    <div class="floating-gem">✨</div>
+  </div>
+
+  <div class="container">
+    <h1>Choose Your Epic Gift!</h1>
+    <div class="gift-container">
+      <div class="gift" data-gift="Ball">
+        <img src="images/ball.jpg" alt="Ball">
+        <p>Ball</p>
+      </div>
+      <div class="gift" data-gift="Puzzle">
+        <img src="images/puzzle.jpg" alt="Puzzle">
+        <p>Puzzle</p>
+      </div>
+      <div class="gift" data-gift="Book">
+        <img src="images/book.jpg" alt="Book">
+        <p>Book</p>
+      </div>
+      <div class="gift" data-gift="Headphones">
+        <img src="images/headphones.jpg" alt="Headphones">
+        <p>Headphones</p>
+      </div>
     </div>
   </div>
 
   <!-- Popup -->
   <div id="popup" class="hidden">
-    <p id="popup-text"></p>
-    <button id="yes-btn" onclick="lockGift()">Yes, lock it!</button>
-    <button id="no-btn" onclick="cancelSelection()">No, change choice</button>
+    <div class="popup-content">
+      <p id="popup-text"></p>
+      <div class="popup-buttons">
+        <button id="yes-btn" onclick="lockGift()">Yes, lock it!</button>
+        <button id="no-btn" onclick="cancelSelection()">No, change choice</button>
+      </div>
+    </div>
   </div>
 
   <script src="script.js"></script>
